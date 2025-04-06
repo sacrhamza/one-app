@@ -29,13 +29,14 @@ int main()
 	t_screen_dimention screen_dimention;
 	char	*tmp;
 
-	app_size = 6;
+	app_size = 7;
 	char *str[] = {"brave", "kitty", "nvim", "ghostty", "vivaldi", "firefox", "google-chrome"};
 	count = 0;
-	screen_dimention = (t_screen_dimention){800, 800};
+	screen_dimention = (t_screen_dimention){300, 300};
 	goal = 0;
 	i = 0;
 	j = 0;
+	Color color;
 
 	Texture2D	sprite [app_size];
 
@@ -72,11 +73,12 @@ int main()
 			break ;
 
 		i = 0;
-		if (screen_dimention.width > MAX_SCREEN_WIDTH)
+		if (screen_dimention.width > MAX_SCREEN_WIDTH && screen_dimention.height > MAX_SCREEN_WIDTH)
 		{
 			while (i < app_size)
 			{
-				DrawRectangle(10, 10 + i * 94, screen_dimention.width - 20, 64,(Color) {189,147,249, 255});
+				//DrawRectangle(10, 10 + i * 94, screen_dimention.width - 20, 64,(Color) {189,147,249, 255});
+				DrawRectangleRounded((Rectangle){10, 10 + i * 94, screen_dimention.width - 20, 64},0.25, 1, (Color) {189,147,249, 255});
 				i++;
 			}
 			i = 0;
@@ -90,19 +92,20 @@ int main()
 			i = 0;
 			while (i < app_size)
 			{
+				color =  YELLOW;
 				check_rectangle_collision(5, &collision);
 				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - 150 - 10, 10 + i * 94, 150, 64}))
-				{
-					DrawRectangle(screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64, RED);
-				}
-				else
-					DrawRectangle(screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64, YELLOW);
+					color = RED;
+				//dRAWrECtangle(screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64, color);
+				DrawRectangleRounded((Rectangle){screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64}, 0.25, 1, color);
 				DrawText("install", screen_dimention.width - 150 - 10 + (150 - (MeasureText("install", 20))) / 2, i * 94 + 10 + 20, 20, LIGHTGRAY);
 				DrawTexture(sprite[i], 10, i * 64 + 10 + i * 30, WHITE);
 				DrawText(str[i], 20 + 64, i * 94 + 20, 20, WHITE);
 				i++;
 			}
 		}
+		else
+			display_screen_size_warning();
 		EndDrawing();
 	}
 

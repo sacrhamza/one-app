@@ -6,7 +6,8 @@ RM_OPTION = rm -rf
 
 CFLAGS = -Wall -Werror -Wextra
 
-SOURCE_FILES = one.c set_cursor.c
+SOURCE_FILES = one.c set_cursor.c size_warning_message.c
+
 
 SOURCE_OBJECTS = $(SOURCE_FILES:%.c=%.o)
 

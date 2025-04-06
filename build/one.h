@@ -6,7 +6,7 @@
 # include "stdio.h"
 # define MAX_SCREEN_WIDTH 400
 
-typedef struct screen_dimention
+typedef struct s_screen_dimention
 {
 	int	width;
 	int	height;
@@ -19,8 +19,20 @@ typedef struct s_mouse_state
 	int	second_value;
 }	t_mouse_state;
 
+typedef struct s_bcolor
+{
+	Color first_color;
+	Color second_color;
+}	t_bcolor;
+
+typedef struct s_align
+{
+	int	horizontal;
+	int	vertical;
+} t_align;
 //this function based on a condition dipslays a cursor deponds on the condition
 //the cursor number
-void set_cursor(t_mouse_state mouse_state);
+void	set_cursor(t_mouse_state mouse_state);
+void	display_screen_size_warning();
 #endif
 
