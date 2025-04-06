@@ -1,2 +1,2 @@
-# one-app
-one app
+# learn-raylib
+learn-raylib

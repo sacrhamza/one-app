@@ -1,0 +1,3 @@
+#!/bin/bash
+
+image-magick $1 -resize 64x64\! $1

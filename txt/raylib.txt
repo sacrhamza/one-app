@@ -1,0 +1,17 @@
+IinitWindow(width, height, title);
+WindowShouldClose() => returns false until click on ESC or the x button
+BeginDrawing();
+EndDrawing();
+DrawText(text, int, int int, somethingelse);
+CloseWindow();
+Texture2D structure
+LoadTexture(texture);
+ClearBackgroud(backgroundmaybe);
+IskeyPressed(key);
+DrawTexture(sprite, int, int, color);
+
+Definition:
+RLAPI void ClearBackground(Color color);
+
+RLAPI void DrawRectangle(int posX, int posY, int width, int height, Color color);                             // Draw a color-filled rectangle
+

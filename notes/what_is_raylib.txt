@@ -1,0 +1,41 @@
+what is raylib:
+
+	raylib is
+		=> A graphics framework
+		=> Written entirely in C for the C99 std
+		=> Open Source
+		=> Multiplatform
+		=> Compatible with many languages through
+		=> community driven bindings
+
+	Perfect for:
+		=> Expermenters
+		=> Educators & Learners
+		=> Games and Apps alike
+		=> Anything
+
+	raylib is Not:
+		A game engine
+		An editor
+
+Why use raylib?
+
+	For Games:
+		=> Fun and foundational approach to game design
+		=> Like building a game engine, but witout the hassle of writing the graphics code.
+		=> Plenty of language bidings meaning you can bring in other libraries
+
+	For Apps..
+		=> Less focus on platform-specific code
+		=> Easy to integrate graphically intensive elements, since it's run in OpenGL
+
+raylib bindings
+	C/C++/C#
+	python/lua/java
+	Of course there is more
+
+
+but how?
+	communit maintained
+	promoted by ray
+	mostly generated
