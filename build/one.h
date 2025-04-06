@@ -4,6 +4,7 @@
 # include <stdbool.h>
 # include "cfreamwork.h"
 # include "stdio.h"
+# define MAX_SCREEN_WIDTH 400
 
 typedef struct screen_dimention
 {

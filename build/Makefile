@@ -19,4 +19,7 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	$(RM) $(RM_OPTION) $(SOURCE_OBJECTS) $(TARGET)
+	$(RM) $(RM_OPTION) $(SOURCE_OBJECTS)
+
+fclean: clean
+	$(RM) $(RM_OPTION) $(TARGET)	
