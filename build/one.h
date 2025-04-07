@@ -31,7 +31,22 @@ typedef struct s_margin
 {
 	int	horizontal;
 	int	vertical;
-} t_margin;
+}	t_margin;
+
+typedef	enum e_state
+{
+	Uninstalled,
+	installed
+}	t_state;
+
+typedef struct s_package
+{
+	char	*name;
+	t_state	state;
+	char	*url_source;	
+	char	*description;
+}	t_package;
+
 //this function based on a condition dipslays a cursor deponds on the condition
 //the cursor number
 void	set_cursor(t_mouse_state mouse_state);

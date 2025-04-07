@@ -24,3 +24,5 @@ clean:
 
 fclean: clean
 	$(RM) $(RM_OPTION) $(TARGET)	
+
+re: fclean $(TARGET)

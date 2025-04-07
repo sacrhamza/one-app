@@ -29,8 +29,8 @@ int main()
 	t_screen_dimention screen_dimention;
 	char	*tmp;
 
-	app_size = 7;
-	char *str[] = {"brave", "kitty", "nvim", "ghostty", "vivaldi", "firefox", "google-chrome"};
+	app_size = 8;
+	char *str[] = {"brave", "kitty", "nvim", "ghostty", "vivaldi", "firefox", "google-chrome", "zen"};
 	count = 0;
 	screen_dimention = (t_screen_dimention){300, 300};
 	goal = 0;
@@ -99,8 +99,8 @@ int main()
 				//dRAWrECtangle(screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64, color);
 				DrawRectangleRounded((Rectangle){screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64}, 0.25, 1, color);
 				DrawText("install", screen_dimention.width - 150 - 10 + (150 - (MeasureText("install", 20))) / 2, i * 94 + 10 + 20, 20, LIGHTGRAY);
-				DrawTexture(sprite[i], 10, i * 64 + 10 + i * 30, WHITE);
-				DrawText(str[i], 20 + 64, i * 94 + 20, 20, WHITE);
+				DrawTexture(sprite[i], 20, i * 64 + 10 + i * 30, WHITE);
+				DrawText(str[i], 30 + 64, i * 94 + 20, 20, WHITE);
 				i++;
 			}
 		}
