@@ -32,7 +32,7 @@ int main()
 	app_size = 8;
 	char *str[] = {"brave", "kitty", "nvim", "ghostty", "vivaldi", "firefox", "google-chrome", "zen"};
 	count = 0;
-	screen_dimention = (t_screen_dimention){300, 300};
+	screen_dimention = (t_screen_dimention){800, 800};
 	goal = 0;
 	i = 0;
 	j = 0;
@@ -78,7 +78,7 @@ int main()
 			while (i < app_size)
 			{
 				//DrawRectangle(10, 10 + i * 94, screen_dimention.width - 20, 64,(Color) {189,147,249, 255});
-				DrawRectangleRounded((Rectangle){10, 10 + i * 94, screen_dimention.width - 20, 64},0.25, 1, (Color) {189,147,249, 255});
+				DrawRectangleRounded((Rectangle){10, 10 + i * 94, screen_dimention.width - 20, 64},0.3, 1, (Color) {189,147,249, 255});
 				i++;
 			}
 			i = 0;
@@ -97,10 +97,10 @@ int main()
 				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - 150 - 10, 10 + i * 94, 150, 64}))
 					color = RED;
 				//dRAWrECtangle(screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64, color);
-				DrawRectangleRounded((Rectangle){screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64}, 0.25, 1, color);
+				DrawRectangleRounded((Rectangle){screen_dimention.width - 150 - 10, i * 94 + 10, 150, 64}, 0.3, 1, color);
 				DrawText("install", screen_dimention.width - 150 - 10 + (150 - (MeasureText("install", 20))) / 2, i * 94 + 10 + 20, 20, LIGHTGRAY);
-				DrawTexture(sprite[i], 20, i * 64 + 10 + i * 30, WHITE);
-				DrawText(str[i], 30 + 64, i * 94 + 20, 20, WHITE);
+				DrawTexture(sprite[i], 10, i * 64 + 10 + i * 30, WHITE);
+				DrawText(str[i], 20 + 64, i * 94 + 20, 20, WHITE);
 				i++;
 			}
 		}
