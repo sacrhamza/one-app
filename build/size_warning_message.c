@@ -6,43 +6,57 @@ static t_bcolor get_suitable_colors()
 
 
 	color = (t_bcolor){GREEN, GREEN};
-	if (GetScreenWidth() < 400)
+	if (GetScreenWidth() < MIN_SCREEN_WIDTH)
 		color.first_color = RED;
-	if (GetScreenHeight() < 400)
+	if (GetScreenHeight() < MIN_SCREEN_HEIGHT)
 		color.second_color = RED;
 	return (color);
 }
 
-static t_align align(t_screen_dimention screen_dimention, int size)
+static int align(int dimention, int size)
 {
-	t_align suitable_padding;
+	int suitable_margin;
 
-	suitable_padding.horizontal = (screen_dimention.width - size) / 2;
-	suitable_padding.vertical = (screen_dimention.height - size) / 2;
-	return (suitable_padding);
+	suitable_margin = (dimention - size) / 2;
+	return (suitable_margin);
 }
 
 void	display_screen_size_warning()
 {
 	char	*width_size;
-	int	font_size;
-	t_bcolor	color;
 	char	*height_size;
+	int	fontsize;
+	t_bcolor	color;
 	t_screen_dimention screen_dimention;
+	t_margin	margin[2];
+	int	char_height;
+	int	in_between;
 
+	in_between = 30;
 	color = (t_bcolor){GREEN, GREEN};
-	font_size = 20;
+	fontsize = 20;
 	screen_dimention = (t_screen_dimention){GetScreenWidth(), GetScreenHeight()};
+
 	width_size = ft_itoa(screen_dimention.width);
 	height_size = ft_itoa(screen_dimention.height);
 
 	color = get_suitable_colors();
 
-	DrawText("Widow size too small: ", align(screen_dimention, MeasureText("Window size too small:", 20)).horizontal, 10, font_size, BLACK);
-	DrawText("Width = ", align(screen_dimention, MeasureText("Width = ", 20) + MeasureText(width_size, 20)).horizontal, 10 + 1 * 30, 20, BLACK);
-	DrawText(width_size, align(screen_dimention, MeasureText("Width = ", 20) + MeasureText(width_size, 20)).horizontal + MeasureText("Width = ", 20), 10 + 30, font_size, color.first_color);
-	DrawText("Height = ", 10, 10 + 2 * 30, 20, BLACK);
-	DrawText(height_size, 10 + MeasureText("Height = ", font_size), 10 + 2 * 30, font_size, color.second_color);
+	margin[0].horizontal = align(screen_dimention.width, MeasureText("Width = ", fontsize) + MeasureText(width_size, fontsize));
+	margin[1].horizontal = align(screen_dimention.width, MeasureText("Height = ", fontsize) + MeasureText(height_size, fontsize));
+
+	char_height = MeasureTextEx(GetFontDefault(), "A", fontsize, 0).y;
+	margin[0].vertical = align(screen_dimention.height, char_height);
+
+	DrawText("Widow size too small: ", align(screen_dimention.width, MeasureText("Window size too small:", fontsize)), margin[0].vertical - in_between, fontsize, BLACK);
+
+	//WIDTH
+	DrawText("Width = ", margin[0].horizontal, margin[0].vertical, 20, BLACK);
+	DrawText(width_size, margin[0].horizontal + MeasureText("Width = ", fontsize), margin[0].vertical, fontsize, color.first_color);
+
+	//HEIGHT
+	DrawText("Height = ", margin[1].horizontal, margin[0].vertical + in_between, fontsize, BLACK);
+	DrawText(height_size, margin[1].horizontal + MeasureText("Height = ", fontsize), margin[0].vertical + 30, fontsize, color.second_color);
 
 	free(width_size);
 	free(height_size);

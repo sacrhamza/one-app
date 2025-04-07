@@ -5,6 +5,8 @@
 # include "cfreamwork.h"
 # include "stdio.h"
 # define MAX_SCREEN_WIDTH 400
+# define MIN_SCREEN_WIDTH 400
+# define MIN_SCREEN_HEIGHT 400
 
 typedef struct s_screen_dimention
 {
@@ -25,11 +27,11 @@ typedef struct s_bcolor
 	Color second_color;
 }	t_bcolor;
 
-typedef struct s_align
+typedef struct s_margin
 {
 	int	horizontal;
 	int	vertical;
-} t_align;
+} t_margin;
 //this function based on a condition dipslays a cursor deponds on the condition
 //the cursor number
 void	set_cursor(t_mouse_state mouse_state);
