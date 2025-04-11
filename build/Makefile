@@ -16,7 +16,10 @@ TARGET = one
 $(TARGET): $(SOURCE_OBJECTS)
 	$(CC) $(CFLAGS) $^ -lraylib -lm cfreamwork.a -o $@ #-fsanitize=address
 
-run: $(TARGET)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I include/
+
+run: re
 	./$(TARGET)
 
 clean:

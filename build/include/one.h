@@ -4,9 +4,9 @@
 # include <stdbool.h>
 # include "cfreamwork.h"
 # include "stdio.h"
-# define MAX_SCREEN_WIDTH 400
-# define MIN_SCREEN_WIDTH 400
-# define MIN_SCREEN_HEIGHT 400
+# define MAX_SCREEN_WIDTH 200
+# define MIN_SCREEN_WIDTH 200
+# define MIN_SCREEN_HEIGHT 200
 
 typedef struct s_screen_dimention
 {
@@ -35,7 +35,7 @@ typedef struct s_margin
 
 typedef	enum e_state
 {
-	Uninstalled,
+	uninstalled,
 	installed
 }	t_state;
 
@@ -43,7 +43,7 @@ typedef struct s_package
 {
 	char	*name;
 	t_state	state;
-	char	*url_source;	
+	char	*url_source;
 	char	*description;
 }	t_package;
 
