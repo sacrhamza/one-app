@@ -1,0 +1,7 @@
+{
+  <GLFW_X11_leak>
+  Memcheck:Leak
+  ...
+  fun:*XRegisterIMInstantiateCallback*
+  ...
+}

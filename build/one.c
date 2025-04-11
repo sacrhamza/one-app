@@ -38,6 +38,17 @@ Color	button_state_color(t_state state)
 	return (button_colors[state]);
 }
 
+//void	unload_2dtextures(int size, Texture2D *texture)
+//{
+	//int	index;
+//
+	//index = 0;
+	//while(index < size)
+	//{
+		//UnloadTexture(texture[index]);
+		//index++;
+	//}
+//}
 
 int	count_packages(char **str)
 {
@@ -62,7 +73,7 @@ int main()
 	Rectangle	box;
 	int		parent_box_size = 64;
 
-	char *str[] = {"nvim", "ghostty", "vivaldi", "firefox", "zen", "firefox-developer", "ffmpeg", "thunderbird", "tor", "opera" ,NULL};
+	char *str[] = {"android-studio", "bitwarden", "brave", "cursor", "datagrip", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "qbittorent", "rider", "rubymine", "rustover", "simplenote", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
 	app_size = count_packages(str);
 	count = 0;
 	screen_dimention = (t_screen_dimention){800, 800};
