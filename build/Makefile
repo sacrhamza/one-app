@@ -14,7 +14,8 @@ SOURCE_OBJECTS = $(SOURCE_FILES:%.c=%.o)
 TARGET = one
 
 $(TARGET): $(SOURCE_OBJECTS)
-	$(CC) $(CFLAGS) $^ -lraylib -lm cfreamwork.a -o $@ #-fsanitize=address
+	make -C cfreamwork
+	$(CC) $(CFLAGS) $^ -lraylib -lm cfreamwork/cfreamwork.a -o $@ #-fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I include/
@@ -23,6 +24,7 @@ run: re
 	./$(TARGET)
 
 clean:
+	make -C cfreamwork fclean
 	$(RM) $(RM_OPTION) $(SOURCE_OBJECTS)
 
 fclean: clean
