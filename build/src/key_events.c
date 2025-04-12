@@ -5,7 +5,7 @@ void	up_down_event(int *position, int speed, t_app_canvas app_canvas)
 	int	factor;
 
 	factor = 0;
-	if (IsKeyDown(KEY_UP))
+	if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_K))
 	{
 		while (*position != 0 && factor < speed)
 		{
@@ -13,7 +13,7 @@ void	up_down_event(int *position, int speed, t_app_canvas app_canvas)
 			factor += 10;
 		}
 	}
-	else if (IsKeyDown(KEY_DOWN))
+	else if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_J))
 	{
 		while ((-1 * *position) < ((app_canvas.apps_number - 1)
 			* (app_canvas.app_rec_dimention.height + app_canvas.margin.vertical)

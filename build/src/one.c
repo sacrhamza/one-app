@@ -35,7 +35,7 @@ int main()
 
 	t_app_canvas	app_canvas;
 
-	char *str[] = {"android-studio", "bitwarden", "brave", "cursor", "datagrip", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "qbittorent", "rider", "rubymine", "rustover", "simplenote", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
+	char *str[] = {"android-studio", "atom", "bitwarden", "blender", "brave", "code", "codium", "cursor", "datagrip", "discord", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "postman", "qbittorent", "rider", "rubymine", "rustover", "seamonkey", "shotcut", "simplenote", "slack", "telegram", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
 	app_size = count_packages(str);
 
 	app_canvas = (t_app_canvas){

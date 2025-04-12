@@ -15,8 +15,8 @@ void	mouse_wheel_move(int *position, int speed, t_app_canvas app_canvas)
 	{
 		if ((mouse_wheel_position != GO_DOWN || *position <= -10)
 				&& !(mouse_wheel_position < 0 && ((-1 * *position) > ((app_canvas.apps_number - 1)
-							* (app_canvas.app_rec_dimention.height + app_canvas.margin.vertical)
-							- GetScreenHeight() + app_canvas.app_rec_dimention.height))))
+				* (app_canvas.app_rec_dimention.height + app_canvas.margin.vertical)
+					- GetScreenHeight() + app_canvas.app_rec_dimention.height + app_canvas.padding))))
 		{
 			*position += mouse_wheel_position * factor;
 		}
