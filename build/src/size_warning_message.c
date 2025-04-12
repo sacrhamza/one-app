@@ -6,9 +6,9 @@ static t_bcolor get_suitable_colors()
 
 
 	color = (t_bcolor){GREEN, GREEN};
-	if (GetScreenWidth() < MIN_SCREEN_WIDTH)
+	if (GetScreenWidth() <= MIN_SCREEN_WIDTH)
 		color.first_color = RED;
-	if (GetScreenHeight() < MIN_SCREEN_HEIGHT)
+	if (GetScreenHeight() <= MIN_SCREEN_HEIGHT)
 		color.second_color = RED;
 	return (color);
 }

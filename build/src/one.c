@@ -1,33 +1,5 @@
 #include <one.h>
 
-void	load_logos(char **logo_name, Texture2D *logo_texture)
-{
-	char	*tmp;
-	char	*image_name;
-	int		index;
-
-	index = 0;
-	while (logo_name[index])
-	{
-		tmp = ft_strjoin("./assets/logos/", logo_name[index]);
-		if (tmp == NULL)
-		{
-			//add something here
-			exit (99);
-		}
-		image_name = ft_strjoin(tmp, ".png");	
-		if (image_name == NULL)
-		{
-			free(tmp);
-			exit (100);
-		}
-		logo_texture[index] = LoadTexture(image_name);
-		free(image_name);
-		free(tmp);
-		index++;
-	}	
-}
-
 Color	button_state_color(t_state state)
 {
 	Color button_colors[4];
@@ -37,18 +9,6 @@ Color	button_state_color(t_state state)
 
 	return (button_colors[state]);
 }
-
-//void	unload_2dtextures(int size, Texture2D *texture)
-//{
-	//int	index;
-//
-	//index = 0;
-	//while(index < size)
-	//{
-		//UnloadTexture(texture[index]);
-		//index++;
-	//}
-//}
 
 int	count_packages(char **str)
 {
@@ -73,8 +33,19 @@ int main()
 	Rectangle	box;
 	int		parent_box_size = 64;
 
+	t_app_canvas	app_canvas;
+
 	char *str[] = {"android-studio", "bitwarden", "brave", "cursor", "datagrip", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "qbittorent", "rider", "rubymine", "rustover", "simplenote", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
 	app_size = count_packages(str);
+
+	app_canvas = (t_app_canvas){
+		.margin = (t_margin){0, 30},
+		.padding = 10,
+		.apps_number = count_packages(str),
+		.app_rec_dimention = (t_dimention){0, 64}
+			
+	};
+
 	count = 0;
 	screen_dimention = (t_screen_dimention){800, 800};
 	goal = 0;
@@ -100,7 +71,7 @@ int main()
 		screen_dimention.height = GetScreenHeight();
 
 		BeginDrawing();
-		ClearBackground((Color){68,71,90, 255});
+		ClearBackground((Color){68, 71, 90, 255});
 
 		if (IsKeyPressed(KEY_Q))
 			break ;
@@ -108,8 +79,12 @@ int main()
 		i = 0;
 		if (screen_dimention.width > MAX_SCREEN_WIDTH && screen_dimention.height > MAX_SCREEN_WIDTH)
 		{
-			if ((mouse_wheel <= 0 && GetMouseWheelMove() > 0) || mouse_wheel <= -10)
-				mouse_wheel -= GetMouseWheelMove() * 30;
+			//HANDLE MOUSE WHEEL MOVES [ UP DOWN ]
+			mouse_wheel_move(&mouse_wheel, 60, app_canvas);
+
+			//HANDLE KEY EVENT [ KEY_UP KEY_DOWN ]
+			up_down_event(&mouse_wheel, 20, app_canvas);
+
 			while (i < app_size)
 			{
 				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + 30) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))
