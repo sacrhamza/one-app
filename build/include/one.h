@@ -2,8 +2,8 @@
 # define ONE_H
 # include <raylib.h>
 # include <stdbool.h>
+# include <stdio.h>
 # include "cfreamwork.h"
-# include "stdio.h"
 # define MAX_SCREEN_WIDTH 200
 # define MIN_SCREEN_WIDTH 200
 # define MIN_SCREEN_HEIGHT 200

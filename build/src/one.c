@@ -1,4 +1,4 @@
-#include "one.h"
+#include <one.h>
 
 void	load_logos(char **logo_name, Texture2D *logo_texture)
 {
@@ -109,7 +109,7 @@ int main()
 		if (screen_dimention.width > MAX_SCREEN_WIDTH && screen_dimention.height > MAX_SCREEN_WIDTH)
 		{
 			if ((mouse_wheel <= 0 && GetMouseWheelMove() > 0) || mouse_wheel <= -10)
-				mouse_wheel -= GetMouseWheelMove() * 25;
+				mouse_wheel -= GetMouseWheelMove() * 30;
 			while (i < app_size)
 			{
 				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + 30) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))

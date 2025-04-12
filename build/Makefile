@@ -6,14 +6,18 @@ RM_OPTION = rm -rf
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SOURCE_FILES = one.c set_cursor.c size_warning_message.c
+
+SRC = src
+
+SOURCE_FILES = $(SRC)/one.c $(SRC)/set_cursor.c $(SRC)/size_warning_message.c
 
 
 SOURCE_OBJECTS = $(SOURCE_FILES:%.c=%.o)
 
-TARGET = one
+TARGET = bin/one
 
 $(TARGET): $(SOURCE_OBJECTS)
+	mkdir bin
 	make -C cfreamwork
 	$(CC) $(CFLAGS) $^ -lraylib -lm cfreamwork/cfreamwork.a -o $@ #-fsanitize=address
 
@@ -28,6 +32,7 @@ clean:
 	$(RM) $(RM_OPTION) $(SOURCE_OBJECTS)
 
 fclean: clean
+	$(RM) $(RM_OPTION) bin
 	$(RM) $(RM_OPTION) $(TARGET)	
 
 re: fclean $(TARGET)
