@@ -56,9 +56,13 @@ int main()
 	box = (Rectangle){.width = 100, .height = 35};
 
 	Texture2D	sprite [app_size];
+
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);    // Window configuration flags
+
 	InitWindow(screen_dimention.width, screen_dimention.height, "one");
 	SetTargetFPS(60);
+
+	SetWindowMinSize(300, 300);
 
 	//load logos for every package
 	load_logos(str, sprite);
