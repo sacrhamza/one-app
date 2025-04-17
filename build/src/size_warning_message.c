@@ -48,14 +48,14 @@ void	display_screen_size_warning()
 	char_height = MeasureTextEx(GetFontDefault(), "A", fontsize, 0).y;
 	margin[0].vertical = align(screen_dimention.height, char_height);
 
-	DrawText("Widow size too small: ", align(screen_dimention.width, MeasureText("Window size too small:", fontsize)), margin[0].vertical - in_between, fontsize, BLACK);
+	DrawText("Widow size too small: ", align(screen_dimention.width, MeasureText("Window size too small:", fontsize)), margin[0].vertical - in_between, fontsize, WHITE);
 
 	//WIDTH
-	DrawText("Width = ", margin[0].horizontal, margin[0].vertical, 20, BLACK);
+	DrawText("Width = ", margin[0].horizontal, margin[0].vertical, 20, WHITE);
 	DrawText(width_size, margin[0].horizontal + MeasureText("Width = ", fontsize), margin[0].vertical, fontsize, color.first_color);
 
 	//HEIGHT
-	DrawText("Height = ", margin[1].horizontal, margin[0].vertical + in_between, fontsize, BLACK);
+	DrawText("Height = ", margin[1].horizontal, margin[0].vertical + in_between, fontsize, WHITE);
 	DrawText(height_size, margin[1].horizontal + MeasureText("Height = ", fontsize), margin[0].vertical + 30, fontsize, color.second_color);
 
 	free(width_size);

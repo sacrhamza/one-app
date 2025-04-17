@@ -23,7 +23,7 @@ $(TARGET): $(SOURCE_OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I include/
 
-run: re
+run: $(TARGET)
 	./$(TARGET)
 
 clean:
@@ -31,7 +31,7 @@ clean:
 	$(RM) $(RM_OPTION) $(SOURCE_OBJECTS)
 
 fclean: clean
-	$(RM) $(RM_OPTION) bin
+	#$(RM) $(RM_OPTION) bin
 	$(RM) $(RM_OPTION) $(TARGET)	
 
 re: fclean $(TARGET)

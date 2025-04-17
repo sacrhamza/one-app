@@ -20,6 +20,36 @@ int	count_packages(char **str)
 	return (count);
 }
 
+void	status_bar(t_screen_dimention screen_dimention)
+{
+	Rectangle	bar;
+	int		count;
+	int		margin;
+	int		tabs_count;
+	t_rectangle	navigation_item;
+	Texture2D	settings = LoadTexture("assets/logos/settings.png");
+
+	navigation_item = (t_rectangle){
+		(Rectangle){.width = 80, .height = 60},
+		.color = GetColor(0x6272A4ff),
+		.roundness = 0.1
+	};
+	tabs_count = 3;
+	count = 0;
+	bar = (Rectangle){0, screen_dimention.height - 60, screen_dimention.width, 60};
+	DrawRectangleRounded(bar, 0, 1, (Color){40, 42, 54, 255});
+	margin = (screen_dimention.width - (tabs_count * navigation_item.rec.width) - (2 * 50)) / (tabs_count - 1);
+	while (count < tabs_count)
+	{
+		navigation_item.rec.x = (margin + navigation_item.rec.width) * count + 50;
+		navigation_item.rec.y = screen_dimention.height - bar.height + (bar.height - navigation_item.rec.height) / 2;
+		DrawRectangleRounded(navigation_item.rec, navigation_item.roundness, 100, navigation_item.color);
+		//DrawCircle(navigation_item.rec.x + (bar.height / 2), navigation_item.rec.y + (bar.height / 2), 30, navigation_item.color);
+		DrawTexture(settings, navigation_item.rec.x, navigation_item.rec.y, WHITE);
+		count++;
+	}
+}
+
 int main()
 {
 
@@ -34,12 +64,13 @@ int main()
 	int		parent_box_size = 64;
 
 	t_app_canvas	app_canvas;
+	Font	jetbrain_font;
 
 	char *str[] = {"android-studio", "atom", "bitwarden", "blender", "brave", "code", "codium", "cursor", "datagrip", "discord", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "postman", "qbittorent", "rider", "rubymine", "rustover", "seamonkey", "shotcut", "simplenote", "slack", "telegram", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
 	app_size = count_packages(str);
 
 	app_canvas = (t_app_canvas){
-		.margin = (t_margin){0, 30},
+		.margin = (t_margin){0, 10},
 		.padding = 10,
 		.apps_number = count_packages(str),
 		.app_rec_dimention = (t_dimention){0, 64}
@@ -67,6 +98,12 @@ int main()
 	//load logos for every package
 	load_logos(str, sprite);
 
+	//load Jet Brain Regular Font
+
+	jetbrain_font = LoadFontEx("/home/hsacr/COMMON_CORE/one-app/build/assets/fonts/JetBrainsMonoNerdFont-Regular.ttf", 22, 0, 250);
+
+	SetTextLineSpacing(16);
+
 	while (!WindowShouldClose())
 	{
 		collision = 0;
@@ -75,7 +112,7 @@ int main()
 		screen_dimention.height = GetScreenHeight();
 
 		BeginDrawing();
-		ClearBackground((Color){68, 71, 90, 255});
+		ClearBackground((Color){22, 22, 23, 255});
 
 		if (IsKeyPressed(KEY_Q))
 			break ;
@@ -91,7 +128,7 @@ int main()
 
 			while (i < app_size)
 			{
-				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + 30) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))
+				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + app_canvas.margin.vertical) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))
 					collision = 1;
 				i++;
 			}
@@ -100,20 +137,22 @@ int main()
 			i = 0;
 			while (i < app_size)
 			{
-				color =  button_state_color(0);
-				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + 30) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))
+				color =  button_state_color(i % 2);
+				if (CheckCollisionPointRec(GetMousePosition(), (Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + app_canvas.margin.vertical) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}))
 					color = GetColor(0x70e000FF);
 
 				//IMPORTANT
-				DrawRectangleRounded((Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + 30) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}, 0.1f, 1, color);
+				DrawRectangleRounded((Rectangle){screen_dimention.width - box.width - 10, i * (parent_box_size + app_canvas.margin.vertical) + 10 + ((parent_box_size - box.height) / 2) + mouse_wheel, box.width, box.height}, 0.1f, 1, color);
 
 				//TEXT: INSTALL REMOVE INSTALLED REMOVED
-				DrawText("install", screen_dimention.width - box.width - 10 + (box.width - (MeasureText("install", 15))) / 2, i * (parent_box_size + 30) + 10 + (parent_box_size - 15) / 2 + mouse_wheel, 15, BLACK);
+				DrawText("install", screen_dimention.width - box.width - 10 + (box.width - (MeasureText("install", 15))) / 2, i * (parent_box_size + app_canvas.margin.vertical) + 10 + (parent_box_size - 15) / 2 + mouse_wheel, 15, BLACK);
 
-				DrawTexture(sprite[i], 10, i * parent_box_size + (parent_box_size - 64)/2 + 10 + i * 30 + mouse_wheel, WHITE);
-				DrawText(str[i], 20 + 64, i * (parent_box_size + 30) + 20 + mouse_wheel, 20, WHITE);
+				DrawTexture(sprite[i], 10, i * parent_box_size + (parent_box_size - 64)/2 + 10 + i * app_canvas.margin.vertical + mouse_wheel, WHITE);
+				//DrawText(str[i], 20 + 64, i * (parent_box_size + 30) + 20 + mouse_wheel, 20, WHITE);
+				DrawTextEx(jetbrain_font, str[i], (Vector2){15 + 64, i * (parent_box_size + app_canvas.margin.vertical) + 15 + mouse_wheel}, (float)jetbrain_font.baseSize, 2, WHITE);
 				i++;
 			}
+			status_bar(screen_dimention);
 		}
 		else
 			display_screen_size_warning();

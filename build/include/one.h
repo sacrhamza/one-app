@@ -61,6 +61,13 @@ typedef struct s_app_canvas
 	t_dimention	app_rec_dimention;
 }	t_app_canvas;
 
+typedef struct s_rectangle
+{
+	Rectangle rec;
+	Color	color;
+	float	roundness;	
+}	t_rectangle;
+
 //this function based on a condition dipslays a cursor deponds on the condition
 //the cursor number
 void	set_cursor(t_mouse_state mouse_state);
