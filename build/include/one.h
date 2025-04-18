@@ -75,5 +75,8 @@ void	display_screen_size_warning();
 void	mouse_wheel_move(int *position, int speed, t_app_canvas app_canvas);
 void	load_logos(char **logo_name, Texture2D *logo_texture);
 void	up_down_event(int *position, int speed, t_app_canvas app_canvas);
+void	status_bar(t_screen_dimention screen_dimention);
+void	clean_and_exit(int exit_code);
+int	count_str_array(char **str);
 #endif
 

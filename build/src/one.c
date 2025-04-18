@@ -10,7 +10,7 @@ Color	button_state_color(t_state state)
 	return (button_colors[state]);
 }
 
-int	count_packages(char **str)
+int	count_str_array(char **str)
 {
 	int	count;
 
@@ -18,36 +18,6 @@ int	count_packages(char **str)
 	while (str[count])
 		count++;
 	return (count);
-}
-
-void	status_bar(t_screen_dimention screen_dimention)
-{
-	Rectangle	bar;
-	int		count;
-	int		margin;
-	int		tabs_count;
-	t_rectangle	navigation_item;
-	Texture2D	settings = LoadTexture("assets/logos/settings.png");
-
-	navigation_item = (t_rectangle){
-		(Rectangle){.width = 80, .height = 60},
-		.color = GetColor(0x6272A4ff),
-		.roundness = 0.1
-	};
-	tabs_count = 3;
-	count = 0;
-	bar = (Rectangle){0, screen_dimention.height - 60, screen_dimention.width, 60};
-	DrawRectangleRounded(bar, 0, 1, (Color){40, 42, 54, 255});
-	margin = (screen_dimention.width - (tabs_count * navigation_item.rec.width) - (2 * 50)) / (tabs_count - 1);
-	while (count < tabs_count)
-	{
-		navigation_item.rec.x = (margin + navigation_item.rec.width) * count + 50;
-		navigation_item.rec.y = screen_dimention.height - bar.height + (bar.height - navigation_item.rec.height) / 2;
-		DrawRectangleRounded(navigation_item.rec, navigation_item.roundness, 100, navigation_item.color);
-		//DrawCircle(navigation_item.rec.x + (bar.height / 2), navigation_item.rec.y + (bar.height / 2), 30, navigation_item.color);
-		DrawTexture(settings, navigation_item.rec.x, navigation_item.rec.y, WHITE);
-		count++;
-	}
 }
 
 int main()
@@ -67,12 +37,12 @@ int main()
 	Font	jetbrain_font;
 
 	char *str[] = {"android-studio", "atom", "bitwarden", "blender", "brave", "code", "codium", "cursor", "datagrip", "discord", "edge", "ffmpeg", "firefox-developer", "firefox", "ghostty", "google-chrome", "kitty", "krita", "min", "netbeans", "nvim", "obsidian", "opera", "phpstorm", "postman", "qbittorent", "rider", "rubymine", "rustover", "seamonkey", "shotcut", "simplenote", "slack", "telegram", "theia", "thunderbird", "tor", "vivaldi", "warp", "waveterm", "webstorm", "wezterm", "zed", "zen", NULL};
-	app_size = count_packages(str);
+	app_size = count_str_array(str);
 
 	app_canvas = (t_app_canvas){
 		.margin = (t_margin){0, 10},
 		.padding = 10,
-		.apps_number = count_packages(str),
+		.apps_number = count_str_array(str),
 		.app_rec_dimention = (t_dimention){0, 64}
 			
 	};

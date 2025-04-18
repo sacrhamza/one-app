@@ -4,12 +4,13 @@ RM = rm
 
 RM_OPTION = rm -rf
 
-CFLAGS = -Wall -Werror -Wextra -g
+#CFLAGS = -Wall -Werror -Wextra -g
 
 
 SRC = src
 
-SOURCE_FILES = $(SRC)/one.c $(SRC)/set_cursor.c $(SRC)/size_warning_message.c $(SRC)/key_events.c $(SRC)/mouse_events.c $(SRC)/load_textures.c
+SOURCE_FILES = $(SRC)/one.c $(SRC)/set_cursor.c $(SRC)/size_warning_message.c $(SRC)/key_events.c $(SRC)/mouse_events.c $(SRC)/load_textures.c \
+		$(SRC)/status_bar.c $(SRC)/status_bar.c $(SRC)/clean.c
 
 
 SOURCE_OBJECTS = $(SOURCE_FILES:%.c=%.o)
