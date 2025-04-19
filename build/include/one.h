@@ -78,5 +78,6 @@ void	up_down_event(int *position, int speed, t_app_canvas app_canvas);
 void	status_bar(t_screen_dimention screen_dimention);
 void	clean_and_exit(int exit_code);
 int	count_str_array(char **str);
+char	*join(size_t nmember, ...);
 #endif
 

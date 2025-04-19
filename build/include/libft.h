@@ -6,7 +6,7 @@
 /*   By: hsacr <hsacr@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:31:56 by hsacr             #+#    #+#             */
-/*   Updated: 2025/03/28 23:09:28 by hsacr            ###   ########.fr       */
+/*   Updated: 2025/04/19 11:19:12 by hsacr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strtoupper(char *str);
 char	*ft_strtolower(char *str);
+char	*ft_strcpy(char *dest, const char *source);
 #endif
