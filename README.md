@@ -1,2 +1,2 @@
-# learn-raylib
-learn-raylib
+# one-app
+one app for one package tool

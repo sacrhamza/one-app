@@ -6,6 +6,7 @@ RM_OPTION = rm -rf
 
 CFLAGS = -Wall -Werror -Wextra -g
 
+TARGET = one
 
 SRC = src
 
@@ -25,7 +26,6 @@ display:
 SOURCE_OBJECTS = $(SOURCE_FILES:%.c=%.o)
 
 
-TARGET = one
 
 $(TARGET): $(SOURCE_OBJECTS)
 	make -C cfreamwork
@@ -36,6 +36,7 @@ $(TARGET): $(SOURCE_OBJECTS)
 
 run: $(TARGET)
 	./$(TARGET)
+rerun: re run
 
 clean:
 	make -C cfreamwork fclean
